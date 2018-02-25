@@ -11,6 +11,7 @@ import (
 	"log"
 	"strings"
 	"time"
+	"github.com/MarinX/keylogger"
 )
 
 type ResponseParsingError struct {
@@ -87,11 +88,11 @@ func obtainShortUrl(address string, callback func(long string, short string)) {
 func processKeyboardEvents(inputChannel chan string) {
 	for {
 		key := <-inputChannel
-		if key == "F10" {
+		if key == "KEY_F10" {
 			data, err := clipboard.ReadAll()
 			if err == nil {
 				go obtainShortUrl(data, func(long string, short string) {
-					fmt.Printf("Converted [ %s ] to [ %s ]\n", long, short)
+					log.Printf("Converted [ %s ] to [ %s ]\n", long, short)
 					clipboard.WriteAll(short)
 				})
 			}
@@ -151,10 +152,10 @@ func main() {
 		for {
 			inputEvent, err := keyboard.ReadOne()
 			if err == nil {
-				if inputEvent.Type == 1 {
+				if inputEvent.Type == keylogger.EV_KEY {
 					keyEvent := evdev.NewKeyEvent(inputEvent)
 					if keyEvent.State == evdev.KeyDown {
-						inputChannel <- keyCodeMap[keyEvent.Scancode]
+						inputChannel <- evdev.KEY[int(keyEvent.Scancode)]
 					}
 				}
 			} else {

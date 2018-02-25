@@ -15,7 +15,7 @@ Tested on Ubuntu 17.04 only.
 ## Build
 
 ```
-go build shortener.go keymapper.go
+go build shortener.go
 ```
 
 ## Usage
