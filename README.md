@@ -19,6 +19,14 @@ go build shortener.go keymapper.go
 
 ## Usage
 
+Run:
+
+```
+sudo ./shortener
+```
+
+Use:
+
 1. Copy (**Ctrl + C**) an URL
 2. Press **F10**
 3. Paste (**Ctrl + V**) a short URL
