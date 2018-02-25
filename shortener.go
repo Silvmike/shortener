@@ -11,7 +11,6 @@ import (
 	"log"
 	"strings"
 	"time"
-	"github.com/MarinX/keylogger"
 )
 
 type ResponseParsingError struct {
@@ -152,7 +151,7 @@ func main() {
 		for {
 			inputEvent, err := keyboard.ReadOne()
 			if err == nil {
-				if inputEvent.Type == keylogger.EV_KEY {
+				if inputEvent.Type == evdev.EV_KEY {
 					keyEvent := evdev.NewKeyEvent(inputEvent)
 					if keyEvent.State == evdev.KeyDown {
 						inputChannel <- evdev.KEY[int(keyEvent.Scancode)]
