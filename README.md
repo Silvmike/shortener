@@ -7,6 +7,7 @@ It uses [Google Shortener API](https://developers.google.com/url-shortener/v1/ge
 Pre-requisites:
  
  * [requesting API KEY](https://developers.google.com/url-shortener/v1/getting_started#APIKey), see code.
+ * sudo apt-get install xsel xclip
  * **root** privileges to run.
 
 Tested on Ubuntu 17.04 only.
